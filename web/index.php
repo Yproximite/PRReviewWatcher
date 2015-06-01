@@ -26,7 +26,6 @@ $app->before(function (Request $request) {
 });
 
 
-
 $app->post('/api', function(Request $request) use ($app) {
 
     $testOpened = $request->request->get('action');
