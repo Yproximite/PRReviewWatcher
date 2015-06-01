@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use GuzzleHttp\Client;
 
 $app = new Application();
 
