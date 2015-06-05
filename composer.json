@@ -1,6 +1,7 @@
 {
     "require": {
         "silex/silex": "~1.2",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "twig/twig": "~1.16"
     }
 }
