@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{%  block title %}Dépôts{%  endblock %}
+
+{%  block content %}
+<br>
+<a href="/depot/add">
+    <button class="btn btn-default ButtonYuNoRight">Création d'une nouvelle checklist</button>
+</a>
+<br><br><br>
+<div class="container">
+    <section class="col-lg-12">
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+            <tr>
+                <th>Repository Name</th>
+                <th>Branch</th>
+                <th>Credential</th>
+                <th>Actif ?</th>
+                <th>Nombre de checklist postées</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Test</td>
+                <td>Test</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+{%  endblock %}
