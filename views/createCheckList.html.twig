@@ -1,0 +1,39 @@
+ {% extends "layout.html.twig" %}
+
+{%  block title %}Créer Dépôts{%  endblock %}
+
+{%  block content %}
+<div class="container">
+    <form>
+        <fieldset>
+            <legend>Create / Edit Checklist</legend>
+                <div class="form-group">
+                    <label for="nameRepo">Nom du repository</label>
+                    <input type="text" id="nameRepo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nameBranch">Branche dans laquelle la PR écoutée va être mergée:</label>
+                    <input type="text" id="nameBranch" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nameCredential">Credential Associé</label>
+                    <select id="nameCredential" class="form-control">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Comment">Commentaire posté</label>
+                    <textarea id="Comment" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Est actif  <input type="checkbox">
+                    </label>
+                </div>
+            <button class="ButtonYuNoRight">Créer / Editer</button>
+        </fieldset>
+    </form>
+</div>
+{%  endblock %}

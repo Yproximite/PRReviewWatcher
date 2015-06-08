@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{%  block title %}Créer Token User{%  endblock %}
+
+{%  block content %}
+<div class="container">
+    <form>
+        <fieldset>
+            <legend>Create Token</legend>
+                <div class="form-group">
+                    <label for="nameUser">Nom du compte</label>
+                    <input type="text" id="nameUser" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="Token">Token</label>
+                    <input type="text" id="Token" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button>Tester</button>
+                </div>
+                <br><br>
+                <button class="ButtonYuNoRight">Créer / Editer</button>
+        </fieldset>
+    </form>
+</div>
+{%  endblock %}
