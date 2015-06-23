@@ -1,0 +1,91 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            <legend>{% block legend %}{{ legend }}{% endblock %}</legend>
+            {{ form_start(projectForm, { 'attr': {'class': 'form-horizontal'} }) }}
+            <div class="form-group">
+                {{ form_label(projectForm.name, 'Repository name (Example : ":organisation/:repository")', {'label_attr': {
+                    'class': 'control-label'
+                }}) }}
+                {{ form_errors(projectForm.name) }}
+                {{ form_widget(projectForm.name, { 'attr': {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(projectForm.branch, 'Branch of the pull-request ("all" for every branch)', { 'label_attr': {
+                    'class': 'control-label'
+                }}) }}
+                {{ form_errors(projectForm.branch) }}
+                {{ form_widget(projectForm.branch, { 'attr': {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(projectForm.credential, null, { 'label_attr': {
+                    'class': 'control-label'
+                }}) }}
+                {{ form_errors(projectForm.credential) }}
+                {{ form_widget(projectForm.credential, { 'attr': {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+            <div class="form-group ">
+                {{ form_label(projectForm.alive, 'Alive or not', { 'label_attr': {
+                    'class': 'control-label'
+                }}) }}
+                {{ form_errors(projectForm.alive) }}
+                {{ form_widget(projectForm.alive) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(projectForm.comment, 'The comment you want to be post in GitHub', { 'label_attr': {
+                    'class': 'control-label'
+                }}) }}
+                <div>
+                    {{ form_errors(projectForm.comment) }}
+                    {{ form_widget(projectForm.comment, { 'attr': {
+                        'class': 'form-control'
+                    }}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="pull-right">
+                    <a href="{{ app.url_generator.generate('listProject') }}">
+                        <input type="submit" class="btn btn-primary" value="Save"/>
+                    </a>
+                </div>
+            </div>
+            {{ form_end(projectForm) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ app.request.basepath }}/css/woofmark.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ app.request.basepath }}/js/woofmark.min.js"></script>
+    <script src="{{ app.request.basepath }}/js/megamark.js"></script>
+    <script src="{{ app.request.basepath }}/js/domador.js"></script>
+    <script type="text/javascript">
+        woofmark(document.querySelector('#project_comment'), {
+            parseMarkdown: megamark,
+            parseHTML: domador
+        });
+    </script>
+
+
+{% endblock %}

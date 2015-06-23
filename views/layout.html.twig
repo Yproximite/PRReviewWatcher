@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    {% block stylesheets %}
+        <link href="{{ app.request.basepath }}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ app.request.basepath }}/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="{{ app.request.basepath }}/css/pr-reviewer.css" rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" style="height: 1px;">
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ app.url_generator.generate('listProject') }}">Projects</a></li>
+                <li><a href="{{ app.url_generator.generate('listCred') }}">Credentials</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if app.security.token and is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="dropdown">
+                        <li><a href="#">
+                            <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.security.token.user.username }}
+                        </a></li>
+                       <li><a href="{{ path('admin_logout') }}">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                       </a></li>
+                    </li>
+                {% else %}
+                    <li class="dropdown">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user"></span> Not connected</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">{% block content %}{% endblock %}</div>
+
+{% block javascripts %}
+    <script src={{ app.request.basepath }}/js/jquery-1.11.3.min.js"></script>
+    <script src={{ app.request.basepath }}/js/bootstrap.min.js"></script>
+{% endblock %}
+</body>
+</html>
+

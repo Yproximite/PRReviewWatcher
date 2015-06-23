@@ -1,0 +1,26 @@
+body {
+    padding-top: 90px;
+}
+
+.ButtonYuNoRight {
+    right: 450px;
+    position: absolute;
+}
+
+.wk-commands,
+.wk-switchboard {
+    display: inline-block;
+}
+
+.wk-mode-active {
+    background-color: #fcc;
+}
+
+#project_comment {
+    width: 500px;
+    height: 350px;
+}
+
+#error_message {
+    text-align: center;
+}
