@@ -1,0 +1,27 @@
+{
+  "name": "PRReviewWatcher",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Yproximite/PRReviewWatcher",
+  "authors": [
+    "CorentinDodon <corentin.dodon@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "gulp": "~3.9.0",
+    "woofmark": "~1.1.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0"
+  }
+}
