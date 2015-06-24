@@ -72,21 +72,6 @@ $app['credential_repository']   = $app->share(function ($app) {
     return new PRReviewWatcher\Entity\CredentialRepository($app['db']);
 });
 
-$app->error(function (\Exception $e, $code) use ($app) {
-    switch ($code) {
-        case 403:
-            $message = 'Access denied.';
-            break;
-        case 404:
-            $message = 'The requested resource could not be found.';
-            break;
-        default:
-            $message = 'Something went wrong.';
-    }
-
-    return $app['twig']->render('error.html.twig', array('message' => $message));
-});
-
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
         $data = json_decode($request->getContent(), true);
