@@ -1,0 +1,46 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('danger') %}
+                <div class="alert alert-danger">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            <legend>{% block legend %}{{ legend }}{% endblock %}</legend>
+            {{ form_start(credentialForm, { 'attr': {'class': 'form-horizontal'} }) }}
+            <div class="form-group">
+                {{ form_label(credentialForm.nameCred, 'Name', {'label_attr': {
+                    'class': 'control-label '
+                }}) }}
+                {{ form_errors(credentialForm.nameCred) }}
+                {{ form_widget(credentialForm.nameCred, { 'attr': {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(credentialForm.token, 'Token (Personal GitHub Token)', { 'label_attr': {
+                    'class': 'control-label'
+                }}) }}
+                {{ form_errors(credentialForm.token) }}
+                {{ form_widget(credentialForm.token, { 'attr': {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+            <div class="form-group">
+                <div class="pull-right">
+                    <input type="submit" class="btn btn-primary"/>
+                </div>
+            </div>
+            {{ form_end(credentialForm) }}
+        </div>
+    </div>
+{% endblock %}

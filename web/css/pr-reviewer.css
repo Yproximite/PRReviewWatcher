@@ -1,0 +1,16 @@
+body {
+    padding-top: 90px;
+}
+
+.ButtonYuNoRight {
+    right: 450px;
+    position: absolute;
+}
+
+#project_comment {
+    height: 650px;
+}
+
+#error_message {
+    text-align: center;
+}
