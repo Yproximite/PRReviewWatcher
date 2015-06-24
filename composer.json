@@ -11,7 +11,9 @@
     "symfony/validator": "~2.7",
     "symfony/security-csrf": "~2.7",
     "symfony/var-dumper": "~2.7",
-    "symfony/security": "~2.7"
+    "symfony/security": "~2.7",
+    "symfony/yaml": "~2.7",
+    "deralex/yaml-config-service-provider": "~1.0"
   },
   "autoload": {
     "psr-4": {"PRReviewWatcher\\": "src/"}
