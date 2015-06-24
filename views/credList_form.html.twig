@@ -18,7 +18,7 @@
             <legend>{% block legend %}{{ legend }}{% endblock %}</legend>
             {{ form_start(credentialForm, { 'attr': {'class': 'form-horizontal'} }) }}
             <div class="form-group">
-                {{ form_label(credentialForm.nameCred, 'Name', {'label_attr': {
+                {{ form_label(credentialForm.nameCred, 'The user who own the token (Example "user").', {'label_attr': {
                     'class': 'control-label '
                 }}) }}
                 {{ form_errors(credentialForm.nameCred) }}

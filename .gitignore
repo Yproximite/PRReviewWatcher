@@ -1,5 +1,6 @@
 vendor/
 .idea
 bower_components
-db/*
+db/
+!db/.gitkeep
 bower.json

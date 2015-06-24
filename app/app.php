@@ -12,6 +12,7 @@ ExceptionHandler::register();
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../views',
 ));
+$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../config/config.yml'));
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
@@ -23,12 +24,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'pattern' => '^/admin',
             'logout'  => array('logout_path' => '/admin/logout'),
             'form'    => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
-            'users'   => array(
-                'admin' => array(
-                    'ROLE_ADMIN',
-                    'd033e22ae348aeb5660fc2140aec35850c4da997',
-                ),
-            ),
+            'users' => $app['config']
         ),
     ),
 ));

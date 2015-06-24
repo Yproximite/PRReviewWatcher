@@ -25,28 +25,35 @@ class CredentialController
         $credentialForm->handleRequest($request);
 
         if ($credentialForm->isSubmitted() && $credentialForm->isValid()) {
-            $token = $credential->getToken();
+            $token      = $credential->getToken();
+            $name       = $credential->getNameCred();
+            $nameLength = strlen($name);
 
             try {
-                $client = new Client();
-                $res    = $client->get('https://api.github.com/user', [
+                $client   = new Client();
+                $res      = $client->get('https://api.github.com/user', [
                     'auth' => [
                         'token',
                         $token
                     ]
                 ]);
-                $test   = $res->getStatusCode();
+                $status   = $res->getStatusCode();
+                $nameTest = substr($res->getBody()->getContents(), 10, $nameLength);
 
             } catch (ClientException $e) {
-                $test = $e->getResponse()->getStatusCode();
+                $status = $e->getResponse()->getStatusCode();
             }
-
-            if ($test == 200) {
-                $app['credential_repository']->save($credential);
-                $app['session']->getFlashBag()->add('success', 'The credential was successfully created.');
+            if ($status == 200) {
+                if ($name == $nameTest) {
+                    $app['credential_repository']->save($credential);
+                    $app['session']->getFlashBag()->add('success', 'The credential was successfully created.');
+                } else {
+                    $app['session']->getFlashBag()->add('danger',
+                        'This is not the user assigned at this token.');
+                }
             } else {
                 $app['session']->getFlashBag()->add('danger',
-                    'The token is incorect. (GitHub API error ' . $test . ')');
+                    'The token is incorect. (GitHub API error ' . $status . ')');
             }
         }
 
@@ -64,28 +71,34 @@ class CredentialController
         $credentialForm->handleRequest($request);
 
         if ($credentialForm->isSubmitted() && $credentialForm->isValid()) {
-            $token = $credential->getToken();
+            $token      = $credential->getToken();
+            $name       = $credential->getNameCred();
 
             try {
-                $client = new Client();
-                $res    = $client->get('https://api.github.com/user', [
+                $client   = new Client();
+                $res      = $client->get('https://api.github.com/user', [
                     'auth' => [
                         'token',
                         $token
                     ]
                 ]);
-                $test   = $res->getStatusCode();
+                $status   = $res->getStatusCode();
+                $nameTest = explode('"',substr($res->getBody()->getContents(), 10, 42));
 
             } catch (ClientException $e) {
-                $test = $e->getResponse()->getStatusCode();
+                $status = $e->getResponse()->getStatusCode();
             }
-
-            if ($test == 200) {
-                $app['credential_repository']->save($credential);
-                $app['session']->getFlashBag()->add('success', 'The credential was successfully created.');
+            if ($status == 200) {
+                if ($name == $nameTest[0]) {
+                    $app['credential_repository']->save($credential);
+                    $app['session']->getFlashBag()->add('success', 'The credential was successfully updated.');
+                } else {
+                    $app['session']->getFlashBag()->add('danger',
+                        'This is not the user assigned at this token.');
+                }
             } else {
                 $app['session']->getFlashBag()->add('danger',
-                    'The token is incorect. (GitHub API error ' . $test . ')');
+                    'The token is incorect. (GitHub API error ' . $status . ')');
             }
         }
 
