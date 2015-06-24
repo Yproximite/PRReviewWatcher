@@ -12,7 +12,7 @@ ExceptionHandler::register();
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../views',
 ));
-$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../web/users.yml'));
+$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../web/config.yml'));
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
