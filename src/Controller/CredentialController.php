@@ -74,7 +74,6 @@ class CredentialController
             $token      = $credential->getToken();
             $name       = $credential->getNameCred();
 
-
             try {
                 $client   = new Client();
                 $res      = $client->get('https://api.github.com/user', [
