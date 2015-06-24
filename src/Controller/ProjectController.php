@@ -19,7 +19,7 @@ class ProjectController
     public function addProjectAction(Request $request, Application $app)
     {
         $credentials = $app['credential_repository']->findAllAsArray();
-        $project = new Project();
+        $project     = new Project();
         $projectForm = $app['form.factory']->create(new ProjectType(), $project, ['credentialChoices' => $credentials]);
         $projectForm->handleRequest($request);
 
@@ -29,8 +29,8 @@ class ProjectController
         }
 
         return $app['twig']->render('projectList_form.html.twig', array(
-            'title' => 'New project',
-            'legend' => 'New project',
+            'title'       => 'New project',
+            'legend'      => 'New project',
             'projectForm' => $projectForm->createView(),
         ));
     }
@@ -38,7 +38,7 @@ class ProjectController
     public function editProjectAction($id, Request $request, Application $app)
     {
         $credentials = $app['credential_repository']->findAllAsArray();
-        $project = $app['project_repository']->find($id);
+        $project     = $app['project_repository']->find($id);
         $projectForm = $app['form.factory']->create(new ProjectType(), $project, ['credentialChoices' => $credentials]);
         $projectForm->handleRequest($request);
 
@@ -48,8 +48,8 @@ class ProjectController
         }
 
         return $app['twig']->render('projectList_form.html.twig', array(
-            'title' => 'Edit project',
-            'legend' => 'Edit project',
+            'title'       => 'Edit project',
+            'legend'      => 'Edit project',
             'projectForm' => $projectForm->createView(),
         ));
     }

@@ -7,18 +7,8 @@ body {
     position: absolute;
 }
 
-.wk-commands,
-.wk-switchboard {
-    display: inline-block;
-}
-
-.wk-mode-active {
-    background-color: #fcc;
-}
-
 #project_comment {
-    width: 500px;
-    height: 350px;
+    height: 650px;
 }
 
 #error_message {

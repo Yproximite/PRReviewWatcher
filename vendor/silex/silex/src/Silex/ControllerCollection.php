@@ -43,9 +43,6 @@ class ControllerCollection
     protected $defaultController;
     protected $prefix;
 
-    /**
-     * Constructor.
-     */
     public function __construct(Route $defaultRoute)
     {
         $this->defaultRoute = $defaultRoute;
@@ -137,6 +134,19 @@ class ControllerCollection
     public function delete($pattern, $to = null)
     {
         return $this->match($pattern, $to)->method('DELETE');
+    }
+
+    /**
+     * Maps an OPTIONS request to a callable.
+     *
+     * @param string $pattern Matched route pattern
+     * @param mixed  $to      Callback that returns the response when matched
+     *
+     * @return Controller
+     */
+    public function options($pattern, $to = null)
+    {
+        return $this->match($pattern, $to)->method('OPTIONS');
     }
 
     /**

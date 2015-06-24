@@ -1,6 +1,5 @@
-vendor
-composer.lock
+vendor/
 .idea
 bower_components
-db
+db/*
 bower.json

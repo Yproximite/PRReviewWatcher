@@ -10,22 +10,20 @@ ErrorHandler::register();
 ExceptionHandler::register();
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
+    'twig.path' => __DIR__ . '/../views',
 ));
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\FormServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
-
-
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     'security.firewalls' => array(
         'secured' => array(
             'pattern' => '^/admin',
-            'logout' => array('logout_path' => '/admin/logout'),
-            'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
-            'users' => array(
+            'logout'  => array('logout_path' => '/admin/logout'),
+            'form'    => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
+            'users'   => array(
                 'admin' => array(
                     'ROLE_ADMIN',
                     'd033e22ae348aeb5660fc2140aec35850c4da997',
@@ -37,7 +35,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver' => 'pdo_sqlite',
-        'path' => __DIR__.'/../db/PRReviewer.db',
+        'path'   => __DIR__ . '/../db/PRReviewer.db',
     ),
 ));
 $schema = $app['db']->getSchemaManager();
@@ -67,10 +65,10 @@ if (!$schema->tablesExist('credential')) {
 $app['security.encoder.digest'] = $app->share(function () {
     return new MessageDigestPasswordEncoder('sha1', false, 1);
 });
-$app['project_repository'] = $app->share(function ($app) {
+$app['project_repository']      = $app->share(function ($app) {
     return new PRReviewWatcher\Entity\ProjectRepository($app['db']);
 });
-$app['credential_repository'] = $app->share(function ($app) {
+$app['credential_repository']   = $app->share(function ($app) {
     return new PRReviewWatcher\Entity\CredentialRepository($app['db']);
 });
 

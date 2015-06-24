@@ -2,11 +2,8 @@ DoctrineServiceProvider
 =======================
 
 The *DoctrineServiceProvider* provides integration with the `Doctrine DBAL
-<http://www.doctrine-project.org/projects/dbal>`_ for easy database access.
-
-.. note::
-
-    There is only a Doctrine DBAL. An ORM service is **not** supplied.
+<http://www.doctrine-project.org/projects/dbal>`_ for easy database access
+(Doctrine ORM integration is **not** supplied).
 
 Parameters
 ----------
@@ -103,7 +100,7 @@ and values are options::
                 'dbname'    => 'my_database',
                 'user'      => 'my_username',
                 'password'  => 'my_password',
-                'charset'   => 'utf8',
+                'charset'   => 'utf8mb4',
             ),
             'mysql_write' => array(
                 'driver'    => 'pdo_mysql',
@@ -111,7 +108,7 @@ and values are options::
                 'dbname'    => 'my_database',
                 'user'      => 'my_username',
                 'password'  => 'my_password',
-                'charset'   => 'utf8',
+                'charset'   => 'utf8mb4',
             ),
         ),
     ));

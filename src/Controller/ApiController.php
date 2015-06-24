@@ -10,44 +10,45 @@ class ApiController
 {
     public function createCheckListAction(Request $request, Application $app)
     {
-        $repoHook = $request->request->get('pull_request')['head']['repo']['full_name'];
-        $branchHook = $request->request->get('pull_request')['base']['ref'];
-        $userHook = $request->request->get('pull_request')['user']['login'];
-        $numberHook = $request->request->get('number');
-        $testOpened = $request->request->get('action');
+        $repoHook      = $request->request->get('pull_request')['head']['repo']['full_name'];
+        $branchHook    = $request->request->get('pull_request')['base']['ref'];
+        $userHook      = $request->request->get('pull_request')['user']['login'];
+        $numberHook    = $request->request->get('number');
+        $testOpened    = $request->request->get('action');
         $testStateOpen = $request->request->get('pull_request')['state'];
-        $resultId = $app['project_repository']->findId($repoHook, $userHook);
-        $resultCredential = $app['credential_repository']->findNameCredential($repoHook);
 
+        $id = $app['project_repository']->findId($repoHook, $userHook);
+
+        //Creation of a pull request and not an issue.
         if (($testOpened == 'opened') && ($testStateOpen == 'open')) {
-            $resultBranch = $app['project_repository']->findBranch($repoHook);
-            $resultToken = $app['credential_repository']->findToken($userHook);
+            $branch = $app['project_repository']->findBranch($repoHook);
+            $token  = $app['credential_repository']->findToken($userHook);
 
-            if ($resultBranch == 'all') {
-                $resultComment = $app['project_repository']->findComment($repoHook, null);
+            if ($branch == 'all') {
+                $comment = $app['project_repository']->findComment($repoHook, null);
             } else {
-                $resultComment = $app['project_repository']->findComment($repoHook, $branchHook);
+                $comment = $app['project_repository']->findComment($repoHook, $branchHook);
             }
+            if (($comment != null) && ($token != null)) {
+                $content = [
+                    'auth' => [
+                        'token',
+                        $token,
+                    ]
+                    ,
+                    'json' => [
+                        'body' => $comment,
+                    ],
+                ];
 
-            $content = [
-                'headers' => [
-                    'User-Agent' => $resultCredential,
-                ],
-                'auth' => [
-                    'token',
-                    $resultToken,
-                ]
-                ,
-                'json' => [
-                    'body' => $resultComment,
-                ],
-            ];
-            $url = 'https://api.github.com/repos/'.$repoHook.'/issues/'.$numberHook.'/comments';
-            $client = new Client();
-            $client->post($url, $content);
-            $app['project_repository']->incrementNumber($resultId);
+                $url    = 'https://api.github.com/repos/' . $repoHook . '/issues/' . $numberHook . '/comments';
+                $client = new Client();
+                $client->post($url, $content);
 
-            return $app->json($content, 201);
+                $app['project_repository']->incrementNumber($id);
+
+                return $app->json($content, 201);
+            }
         }
     }
 }

@@ -85,7 +85,7 @@ class Project
 
     public function getAlive()
     {
-        return (boolean) $this->alive;
+        return (boolean)$this->alive;
     }
 
     public function setAlive($alive)

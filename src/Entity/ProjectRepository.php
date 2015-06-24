@@ -6,14 +6,14 @@ class ProjectRepository extends Repository
 {
     public function findAll()
     {
-        $sql = 'SELECT * FROM project AS p LEFT JOIN credential AS c ON p.credential = c.idCred ORDER BY p.id DESC';
+        $sql     = 'SELECT * FROM project AS p LEFT JOIN credential AS c ON p.credential = c.idCred ORDER BY p.id DESC';
         $results = $this->db->prepare($sql);
         $results->execute();
-        $results = $results->fetchAll();
+        $results  = $results->fetchAll();
         $projects = array();
 
         foreach ($results as $row) {
-            $projectId = $row['id'];
+            $projectId            = $row['id'];
             $projects[$projectId] = $this->buildDomainObject($row);
         }
 
@@ -34,11 +34,11 @@ class ProjectRepository extends Repository
     public function save(Project $project)
     {
         $projectData = array(
-            'name' => $project->getName(),
-            'branch' => $project->getBranch(),
+            'name'       => $project->getName(),
+            'branch'     => $project->getBranch(),
             'credential' => $project->getCredential(),
-            'comment' => $project->getComment(),
-            'alive' => $project->getAlive(),
+            'comment'    => $project->getComment(),
+            'alive'      => $project->getAlive(),
         );
 
         if ($project->getId()) {
@@ -57,7 +57,7 @@ class ProjectRepository extends Repository
 
     public function findBranch($repoHook)
     {
-        $sql = 'SELECT branch FROM project WHERE name = :name AND alive = 1;';
+        $sql    = 'SELECT branch FROM project WHERE name = :name AND alive = 1;';
         $result = $this->db->prepare($sql);
         $result->bindValue(':name', $repoHook);
         $result->execute();
@@ -70,11 +70,11 @@ class ProjectRepository extends Repository
     public function findComment($repoHook, $branchHook)
     {
         if ($branchHook == null) {
-            $sql = 'SELECT comment FROM project WHERE name = :name AND alive = 1;';
+            $sql    = 'SELECT comment FROM project WHERE name = :name AND alive = 1;';
             $result = $this->db->prepare($sql);
             $result->bindValue(':name', $repoHook);
         } else {
-            $sql = 'SELECT comment FROM project WHERE name = :name AND branch = :branch AND alive = 1';
+            $sql    = 'SELECT comment FROM project WHERE name = :name AND branch = :branch AND alive = 1';
             $result = $this->db->prepare($sql);
             $result->bindValue(':name', $repoHook);
             $result->bindValue(':branch', $branchHook);
@@ -89,7 +89,7 @@ class ProjectRepository extends Repository
 
     public function findId($repoHook, $userHook)
     {
-        $sql = 'SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred;';
+        $sql    = 'SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred;';
         $result = $this->db->prepare($sql);
         $result->bindValue(':name', $repoHook);
         $result->bindValue(':nameCred', $userHook);
@@ -102,7 +102,7 @@ class ProjectRepository extends Repository
 
     public function incrementNumber($id)
     {
-        $sql = 'SELECT numberTaskList FROM project WHERE id = :id';
+        $sql    = 'SELECT numberTaskList FROM project WHERE id = :id';
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $id);
         $result->execute();
@@ -110,7 +110,7 @@ class ProjectRepository extends Repository
         $result = $result['numberTaskList'];
         $result = $result + 1;
 
-        $sql = 'UPDATE project SET numberTaskList = :numberTaskList where id = :id;';
+        $sql    = 'UPDATE project SET numberTaskList = :numberTaskList where id = :id;';
         $update = $this->db->prepare($sql);
         $update->bindValue(':numberTaskList', $result);
         $update->bindValue(':id', $id);

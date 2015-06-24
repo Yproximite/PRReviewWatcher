@@ -21,7 +21,7 @@ use Silex\Tests\Provider\ValidatorServiceProviderTest\Constraint\Custom;
 use Silex\Tests\Provider\ValidatorServiceProviderTest\Constraint\CustomValidator;
 
 /**
- * ValidatorServiceProvider
+ * ValidatorServiceProvider.
  *
  * Javier Lopez <f12loalf@gmail.com>
  */
@@ -69,7 +69,7 @@ class ValidatorServiceProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidatorServiceIsAValidator($app)
     {
-        $this->assertInstanceOf('Symfony\Component\Validator\Validator', $app['validator']);
+        $this->assertInstanceOf('Symfony\Component\Validator\ValidatorInterface', $app['validator']);
     }
 
     /**
@@ -98,7 +98,7 @@ class ValidatorServiceProviderTest extends \PHPUnit_Framework_TestCase
             ->getForm()
         ;
 
-        $form->bind(array('email' => $email));
+        $form->submit(array('email' => $email));
 
         $this->assertEquals($isValid, $form->isValid());
         $this->assertEquals($nbGlobalError, count($form->getErrors()));

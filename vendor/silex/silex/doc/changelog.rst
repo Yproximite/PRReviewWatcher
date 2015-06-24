@@ -1,6 +1,23 @@
 Changelog
 =========
 
+1.3.0 (2015-06-05)
+------------------
+
+* added a `$app['user']` to get the current user (security provider)
+* added view handlers
+* added support for the OPTIONS HTTP method
+* added caching for the Translator provider
+* deprecated `$app['exception_handler']->disable()` in favor of `unset($app['exception_handler'])`
+* made Silex compatible with Symfony 2.7 an 2.8 (and keep compatibility with Symfony 2.3, 2.5, and 2.6)
+* removed deprecated TwigCoreExtension class (register the new HttpFragmentServiceProvider instead)
+* bumped minimum version of PHP to 5.3.9
+
+1.2.5 (2015-06-04)
+------------------
+
+* no code changes (last version of the 1.2 branch)
+
 1.2.4 (2015-04-11)
 ------------------
 

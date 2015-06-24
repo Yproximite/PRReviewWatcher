@@ -6,14 +6,14 @@ class CredentialRepository extends Repository
 {
     public function findAll()
     {
-        $sql = 'SELECT * FROM credential ORDER BY idCred DESC';
+        $sql    = 'SELECT * FROM credential ORDER BY idCred DESC';
         $result = $this->db->prepare($sql);
         $result->execute();
-        $result = $result->fetchAll();
+        $result      = $result->fetchAll();
         $credentials = array();
 
         foreach ($result as $row) {
-            $credentialId = $row['idCred'];
+            $credentialId               = $row['idCred'];
             $credentials[$credentialId] = $this->buildDomainObject($row);
         }
 
@@ -35,7 +35,7 @@ class CredentialRepository extends Repository
     {
         $credentialData = array(
             'nameCred' => $credential->getNameCred(),
-            'token' => $credential->getToken(),
+            'token'    => $credential->getToken(),
         );
         if ($credential->getIdCred()) {
             $this->getDb()->update('credential', $credentialData, array('idCred' => $credential->getIdCred()));
@@ -51,14 +51,14 @@ class CredentialRepository extends Repository
 
     public function findAllAsArray()
     {
-        $sql = 'SELECT idCred, nameCred FROM credential ORDER BY idCred DESC';
+        $sql    = 'SELECT idCred, nameCred FROM credential ORDER BY idCred DESC';
         $result = $this->db->prepare($sql);
         $result->execute();
-        $result = $result->fetchAll();
+        $result      = $result->fetchAll();
         $credentials = array();
 
         foreach ($result as $row) {
-            $id = $row['idCred'];
+            $id               = $row['idCred'];
             $credentials[$id] = $row['nameCred'];
         }
 
@@ -67,7 +67,7 @@ class CredentialRepository extends Repository
 
     public function findToken($userHook)
     {
-        $sql = 'SELECT token FROM credential WHERE nameCred = :nameCred;';
+        $sql    = 'SELECT token FROM credential WHERE nameCred = :nameCred;';
         $result = $this->db->prepare($sql);
         $result->bindValue(':nameCred', $userHook);
         $result->execute();
@@ -79,7 +79,7 @@ class CredentialRepository extends Repository
 
     public function findNameCredential($repoHook)
     {
-        $sql = 'SELECT nameCred FROM credential as c JOIN project as p ON c.idCred = p.credential AND p.name = :name;';
+        $sql    = 'SELECT nameCred FROM credential as c JOIN project as p ON c.idCred = p.credential AND p.name = :name;';
         $result = $this->db->prepare($sql);
         $result->bindValue(':name', $repoHook);
         $result->execute();

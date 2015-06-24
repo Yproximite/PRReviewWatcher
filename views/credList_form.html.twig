@@ -10,10 +10,15 @@
                     {{ flashMessage }}
                 </div>
             {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('danger') %}
+                <div class="alert alert-danger">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
             <legend>{% block legend %}{{ legend }}{% endblock %}</legend>
             {{ form_start(credentialForm, { 'attr': {'class': 'form-horizontal'} }) }}
             <div class="form-group">
-                {{ form_label(credentialForm.nameCred, 'Credential (Example : ":user")', {'label_attr': {
+                {{ form_label(credentialForm.nameCred, 'Name', {'label_attr': {
                     'class': 'control-label '
                 }}) }}
                 {{ form_errors(credentialForm.nameCred) }}
