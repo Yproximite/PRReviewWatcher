@@ -27,7 +27,6 @@ class CredentialController
         if ($credentialForm->isSubmitted() && $credentialForm->isValid()) {
             $token      = $credential->getToken();
             $name       = $credential->getNameCred();
-            $nameLength = strlen($name);
 
             try {
                 $client   = new Client();
@@ -38,13 +37,13 @@ class CredentialController
                     ]
                 ]);
                 $status   = $res->getStatusCode();
-                $nameTest = substr($res->getBody()->getContents(), 10, $nameLength);
+                $testName = json_decode($res->getBody()->getContents(), true);
 
             } catch (ClientException $e) {
                 $status = $e->getResponse()->getStatusCode();
             }
             if ($status == 200) {
-                if ($name == $nameTest) {
+                if ($name == $testName['login']) {
                     $app['credential_repository']->save($credential);
                     $app['session']->getFlashBag()->add('success', 'The credential was successfully created.');
                 } else {
@@ -83,13 +82,13 @@ class CredentialController
                     ]
                 ]);
                 $status   = $res->getStatusCode();
-                $nameTest = explode('"',substr($res->getBody()->getContents(), 10, 42));
+                $testName = json_decode($res->getBody()->getContents(), true);
 
             } catch (ClientException $e) {
                 $status = $e->getResponse()->getStatusCode();
             }
             if ($status == 200) {
-                if ($name == $nameTest[0]) {
+                if ($name == $testName['login']) {
                     $app['credential_repository']->save($credential);
                     $app['session']->getFlashBag()->add('success', 'The credential was successfully updated.');
                 } else {
