@@ -65,11 +65,19 @@ class CredentialRepository extends Repository
         return $credentials;
     }
 
-    public function findToken($userHook)
+    public function findToken($repoHook, $branchHook)
     {
-        $sql    = 'SELECT token FROM credential WHERE nameCred = :nameCred;';
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':nameCred', $userHook);
+        if ($branchHook == null) {
+            $sql    = "SELECT token FROM credential AS c JOIN project AS P ON c.idcred = p.credential WHERE p.name = :name AND p.branch = 'all';";
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':name', $repoHook);
+        } else {
+            $sql    = "SELECT token FROM credential AS c JOIN project AS P ON c.idcred = p.credential WHERE p.name = :name AND p.branch = :branch;";
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':name', $repoHook);
+            $result->bindValue(':branch', $branchHook);
+        }
+
         $result->execute();
         $result = $result->fetch();
         $result = $result['token'];
@@ -79,7 +87,7 @@ class CredentialRepository extends Repository
 
     public function findNameCredential($repoHook)
     {
-        $sql    = 'SELECT nameCred FROM credential as c JOIN project as p ON c.idCred = p.credential AND p.name = :name;';
+        $sql    = 'SELECT nameCred FROM credential AS c JOIN project AS p ON c.idCred = p.credential AND p.name = :name;';
         $result = $this->db->prepare($sql);
         $result->bindValue(':name', $repoHook);
         $result->execute();
