@@ -1,4 +1,19 @@
 {
+<<<<<<< Updated upstream
+=======
+  "name": "yproximite/pr-review-watcher",
+  "type": "silex-application",
+  "description": "An open source tool to help code reviewer's to focus on what's important by reminding the developper to check for obvious things first.",
+  "keywords": ["prreviewwatcher", "github"],
+  "homepage": "https://github.com/Yproximite/PRReviewWatcher",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Corentin Dodon",
+      "email": "corentin.dodon@gmail.com"
+    }
+  ],
+>>>>>>> Stashed changes
   "require": {
     "silex/silex": "~1.3",
     "guzzlehttp/guzzle": "~6.0",
