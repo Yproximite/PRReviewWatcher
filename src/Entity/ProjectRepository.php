@@ -61,10 +61,16 @@ class ProjectRepository extends Repository
         $result = $this->db->prepare($sql);
         $result->bindValue(':name', $repoHook);
         $result->execute();
-        $result = $result->fetch();
-        $result = $result['branch'];
+        $result   = $result->fetchAll();
 
-        return $result;
+        $branches = array();
+
+        foreach ($result as $row) {
+            $branch     = $row['branch'];
+            $branches[] = $branch;
+        }
+
+        return $branches;
     }
 
     public function findComment($repoHook, $branchHook)
@@ -87,12 +93,21 @@ class ProjectRepository extends Repository
         return $result;
     }
 
-    public function findId($repoHook, $userHook)
+    public function findId($repoHook, $userHook, $branchHook)
     {
-        $sql    = 'SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred;';
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':name', $repoHook);
-        $result->bindValue(':nameCred', $userHook);
+        if ($branchHook == null) {
+            $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred AND branch = 'all';";
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':name', $repoHook);
+            $result->bindValue(':nameCred', $userHook);
+        } else {
+            $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred AND branch = :branch;";
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':name', $repoHook);
+            $result->bindValue(':nameCred', $userHook);
+            $result->bindValue(':branch', $branchHook);
+        }
+
         $result->execute();
         $result = $result->fetch();
         $result = $result['id'];
