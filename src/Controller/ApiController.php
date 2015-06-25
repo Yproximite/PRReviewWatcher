@@ -17,18 +17,20 @@ class ApiController
         $testOpened    = $request->request->get('action');
         $testStateOpen = $request->request->get('pull_request')['state'];
 
-        $id = $app['project_repository']->findId($repoHook, $userHook);
-
         //Creation of a pull request and not an issue.
         if (($testOpened == 'opened') && ($testStateOpen == 'open')) {
             $branch = $app['project_repository']->findBranch($repoHook);
             $token  = $app['credential_repository']->findToken($userHook);
 
-            if ($branch == 'all') {
+            if (in_array('all', $branch)) {
                 $comment = $app['project_repository']->findComment($repoHook, null);
-            } else {
-                $comment = $app['project_repository']->findComment($repoHook, $branchHook);
+                $id = $app['project_repository']->findId($repoHook, $userHook, null);
             }
+            elseif (in_array($branchHook, $branch)){
+                $comment = $app['project_repository']->findComment($repoHook, $branchHook);
+                $id = $app['project_repository']->findId($repoHook, $userHook, $branchHook);
+            }
+
             if (($comment != null) && ($token != null)) {
                 $content = [
                     'auth' => [
