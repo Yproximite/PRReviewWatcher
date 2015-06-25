@@ -4,6 +4,7 @@ namespace PRReviewWatcher\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CredentialType extends AbstractType
 {
@@ -14,7 +15,10 @@ class CredentialType extends AbstractType
     {
         $builder
             ->add('nameCred', 'text')
-            ->add('token', 'text');
+            ->add('token', 'text', array(
+                'mapped' => $options['mapped'],
+                'disabled' => $options['disable']
+            ));
     }
 
     /**
@@ -23,5 +27,14 @@ class CredentialType extends AbstractType
     public function getName()
     {
         return 'credential';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setRequired(['mapped']);
+        $resolver->setRequired(['disable']);
     }
 }

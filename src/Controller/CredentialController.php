@@ -21,7 +21,7 @@ class CredentialController
     public function addCredentialAction(Request $request, Application $app)
     {
         $credential     = new Credential();
-        $credentialForm = $app['form.factory']->create(new CredentialType(), $credential);
+        $credentialForm = $app['form.factory']->create(new CredentialType(), $credential, ['mapped' => true, 'disable' => false]);
         $credentialForm->handleRequest($request);
 
         if ($credentialForm->isSubmitted() && $credentialForm->isValid()) {
@@ -66,7 +66,7 @@ class CredentialController
     public function editCredentialAction($id, Request $request, Application $app)
     {
         $credential     = $app['credential_repository']->find($id);
-        $credentialForm = $app['form.factory']->create(new CredentialType(), $credential);
+        $credentialForm = $app['form.factory']->create(new CredentialType(), $credential, ['mapped' => false, 'disable' => true]);
         $credentialForm->handleRequest($request);
 
         if ($credentialForm->isSubmitted() && $credentialForm->isValid()) {
