@@ -86,12 +86,15 @@ class CredentialRepository extends Repository
         return $credentials;
     }
 
+<<<<<<< HEAD
     /**
      * @param $repoHook
      * @param $branchHook
      *
      * @return \Doctrine\DBAL\Driver\Statement|mixed
      */
+=======
+>>>>>>> d2a57a9ddd094cfb688eb6bcdfb5d8356e8ea183
     public function findToken($repoHook, $branchHook)
     {
         if ($branchHook == null) {
