@@ -61,14 +61,16 @@ class ProjectRepository extends Repository
         $result = $this->db->prepare($sql);
         $result->bindValue(':name', $repoHook);
         $result->execute();
-        $result = $result->fetchAll();
-        $branches=array();
-        foreach ($result as $row) {
-            $branch   = $row['branch'];
-            $branches[]=$branch;
-        }
-        return $branches;
+        $result   = $result->fetchAll();
 
+        $branches = array();
+
+        foreach ($result as $row) {
+            $branch     = $row['branch'];
+            $branches[] = $branch;
+        }
+
+        return $branches;
     }
 
     public function findComment($repoHook, $branchHook)
@@ -93,7 +95,7 @@ class ProjectRepository extends Repository
 
     public function findId($repoHook, $userHook, $branchHook)
     {
-        if($branchHook == null) {
+        if ($branchHook == null) {
             $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred AND branch = 'all';";
             $result = $this->db->prepare($sql);
             $result->bindValue(':name', $repoHook);
