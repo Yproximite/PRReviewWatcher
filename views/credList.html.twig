@@ -29,7 +29,7 @@
                 {% for credential in credentials %}
                     <tr>
                         <td>{{ credential.nameCred }}</td>
-                        <td>{{ credential.token }}</td>
+                        <td>********************</td>
                         <td>
                             <a class="btn btn-success" href="{{ app.url_generator.generate('listCred') }}/{{ credential.idCred }}/edit">
                                 <span class="glyphicon glyphicon-pencil"></span> Edit

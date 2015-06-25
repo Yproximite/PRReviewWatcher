@@ -4,6 +4,9 @@ namespace PRReviewWatcher\Entity;
 
 class ProjectRepository extends Repository
 {
+    /**
+     * @return array
+     */
     public function findAll()
     {
         $sql     = 'SELECT * FROM project AS p LEFT JOIN credential AS c ON p.credential = c.idCred ORDER BY p.id DESC';
@@ -20,6 +23,11 @@ class ProjectRepository extends Repository
         return $projects;
     }
 
+    /**
+     * @param $id
+     *
+     * @return Project
+     */
     public function find($id)
     {
         $sql = 'SELECT p.*,c.idCred FROM project AS p, credential AS c WHERE p.id= :id';
@@ -31,6 +39,9 @@ class ProjectRepository extends Repository
         return $this->buildDomainObject($row);
     }
 
+    /**
+     * @param Project $project
+     */
     public function save(Project $project)
     {
         $projectData = array(
@@ -50,11 +61,19 @@ class ProjectRepository extends Repository
         }
     }
 
+    /**
+     * @param $id
+     */
     public function delete($id)
     {
         $this->getDb()->delete('project', array('id' => $id));
     }
 
+    /**
+     * @param $repoHook
+     *
+     * @return array
+     */
     public function findBranch($repoHook)
     {
         $sql    = 'SELECT branch FROM project WHERE name = :name AND alive = 1;';
@@ -73,6 +92,12 @@ class ProjectRepository extends Repository
         return $branches;
     }
 
+    /**
+     * @param $repoHook
+     * @param $branchHook
+     *
+     * @return \Doctrine\DBAL\Driver\Statement|mixed
+     */
     public function findComment($repoHook, $branchHook)
     {
         if ($branchHook == null) {
@@ -93,6 +118,13 @@ class ProjectRepository extends Repository
         return $result;
     }
 
+    /**
+     * @param $repoHook
+     * @param $userHook
+     * @param $branchHook
+     *
+     * @return \Doctrine\DBAL\Driver\Statement|mixed
+     */
     public function findId($repoHook, $userHook, $branchHook)
     {
         if ($branchHook == null) {
@@ -115,6 +147,9 @@ class ProjectRepository extends Repository
         return $result;
     }
 
+    /**
+     * @param $id
+     */
     public function incrementNumber($id)
     {
         $sql    = 'SELECT numberTaskList FROM project WHERE id = :id';
@@ -132,6 +167,10 @@ class ProjectRepository extends Repository
         $update->execute();
     }
 
+    /**
+     * @param $row
+     * @return Project
+     */
     protected function buildDomainObject($row)
     {
         $credential = new Credential();
