@@ -11,10 +11,11 @@ The project can **save you time** when it comes to pull request reviews:
 * avoid common pitfall/mistakes a developer can make
 * make sure the developper has reviewed his own code
 
-### Example
-https://github.com/Yproximite/PRReviewWatcher/pull/23
+### Screenshots
 
-![Example](http://i.imgur.com/mcRPRCU.png)
+![Example webinterface](http://i.imgur.com/zsnuTV0.png)
+
+![Example pull request comment](http://i.imgur.com/mcRPRCU.png)
 
 ### How to install the project
 
