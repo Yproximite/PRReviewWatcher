@@ -12,7 +12,6 @@ class ApiController
     {
         $repoHook      = $request->request->get('pull_request')['head']['repo']['full_name'];
         $branchHook    = $request->request->get('pull_request')['base']['ref'];
-        $userHook      = $request->request->get('pull_request')['user']['login'];
         $numberHook    = $request->request->get('number');
         $testOpened    = $request->request->get('action');
         $testStateOpen = $request->request->get('pull_request')['state'];
@@ -23,12 +22,12 @@ class ApiController
 
             if (in_array('all', $branch)) {
                 $comment = $app['project_repository']->findComment($repoHook, null);
-                $id = $app['project_repository']->findId($repoHook, $userHook, null);
+                $id = $app['project_repository']->findId($repoHook, null);
                 $token  = $app['credential_repository']->findToken($repoHook, null);
             }
             elseif (in_array($branchHook, $branch)){
                 $comment = $app['project_repository']->findComment($repoHook, $branchHook);
-                $id = $app['project_repository']->findId($repoHook, $userHook, $branchHook);
+                $id = $app['project_repository']->findId($repoHook, $branchHook);
                 $token  = $app['credential_repository']->findToken($repoHook, $branchHook);
             }
 
