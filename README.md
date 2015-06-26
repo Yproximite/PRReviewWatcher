@@ -11,6 +11,8 @@ The project can **save you time** when it comes to pull request reviews:
 * avoid common pitfall/mistakes a developer can make
 * make sure the developper has reviewed his own code
 
+The list of checks are fully customizable.
+
 ### Screenshots
 
 ![Example webinterface](http://i.imgur.com/zsnuTV0.png)
@@ -44,7 +46,6 @@ Configure webhook github by following this example :
 
 * Inside your GitHub project, go to **settings** then to **webhooks & services**.
 * Enter the url of the application + `/api`  Example : `https://[url_of_the_application]/api`, select `application/json` and choose only the event **Pull Request**.
-* 
 
 You can configure when to post comment on new pull request:
 
