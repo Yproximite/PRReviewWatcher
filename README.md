@@ -23,13 +23,13 @@ Simply install the project via composer or via git.
 
 #### Security
 
-Enter your desired login/sha1 password inside the file `config/config.yml` in order to connect yourself to the application.
+Enter your desired login/sha1 password inside the file `config/config.yml` (`cp config/config.yml.example` to `config/config.yml` in order to login to the application.
 
 You can generate your sha1 password at [sha1](http://www.sha1-online.com/).
 
 #### Credential
 
-First of all, you'll need a Github token in order to post comment.
+First of all, you'll need a **Github token** in order to post comments.
 
 Check the [GitHub documentation](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to see how to create one .
 
@@ -76,5 +76,4 @@ nginx example:
     	location / { 
             try_files $uri $uri/ /index.php?$query_string;
         }
-    
     }
