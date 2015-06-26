@@ -120,23 +120,20 @@ class ProjectRepository extends Repository
 
     /**
      * @param $repoHook
-     * @param $userHook
      * @param $branchHook
      *
      * @return \Doctrine\DBAL\Driver\Statement|mixed
      */
-    public function findId($repoHook, $userHook, $branchHook)
+    public function findId($repoHook, $branchHook)
     {
         if ($branchHook == null) {
-            $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred AND branch = 'all';";
+            $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND branch = 'all';";
             $result = $this->db->prepare($sql);
             $result->bindValue(':name', $repoHook);
-            $result->bindValue(':nameCred', $userHook);
         } else {
-            $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND nameCred = :nameCred AND branch = :branch;";
+            $sql    = "SELECT id FROM project AS p , credential AS c WHERE name = :name AND branch = :branch;";
             $result = $this->db->prepare($sql);
             $result->bindValue(':name', $repoHook);
-            $result->bindValue(':nameCred', $userHook);
             $result->bindValue(':branch', $branchHook);
         }
 
