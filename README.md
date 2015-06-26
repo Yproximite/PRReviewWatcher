@@ -42,10 +42,9 @@ Check the [GitHub documentation](https://help.github.com/articles/creating-an-ac
 Then you add a project you want to hook into.
 Configure webhook github by following this example : 
 
-* Into your GitHub project, click to settings then to WebHooks & Services.
-* Enter the url of the application + /api  Example : `https://[url_of_the_application]/api`, select application/json and choose only the event Pull Request.
-
-![Example](http://i.imgur.com/GKK9Hk1.png)
+* Inside your GitHub project, go to **settings** then to **webhooks & services**.
+* Enter the url of the application + `/api`  Example : `https://[url_of_the_application]/api`, select `application/json` and choose only the event **Pull Request**.
+* 
 
 You can configure when to post comment on new pull request:
 
