@@ -8,9 +8,14 @@ The project can **save you time** when it comes to pull request reviews:
 * avoid common pitfall/mistakes a developer can make
 * make sure the developper has reviewed his own code
 
+### Example
+https://github.com/Yproximite/PRReviewWatcher/pull/23
+
+![Example](http://i.imgur.com/mcRPRCU.png)
+
 ### How to install the project
 
-Simply install the project via composer or via git. It was made
+Simply install the project via composer or via git.
 
 `composer require yproximite/pr-review-watcher`
 
@@ -48,18 +53,13 @@ nginx example:
 
     server {
     	listen	80;
-    	server_name prwatcher;
+    	server_name your.domain.name;
      
     	access_log	/var/log/nginx/prwatcher.access.log;
     	error_log	/var/log/nginx/prwatcher.error.log;
      
     	root path/of/project/web;
     	index index.php;
-     
-    	#location @rewrites {
-    	#	#rewrite ^ /index.php last;
-    	#	rewrite ^/(.*)$ index.php?url=$1 last;
-    	#}
     
     	location ~ /\.ht {
     		deny all;
@@ -69,12 +69,12 @@ nginx example:
     		fastcgi_index index.php;
        	 	fastcgi_split_path_info ^(.+\.php)(.*)$;
        		include fastcgi_params;
-        		fastcgi_pass unix:/var/run/php5-fpm.sock;
+        	fastcgi_pass unix:/var/run/php5-fpm.sock;
        		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;	
      	}
     
     	location / { 
-                    try_files $uri $uri/ /index.php?$query_string;
-            }
+            try_files $uri $uri/ /index.php?$query_string;
+        }
     
     }
