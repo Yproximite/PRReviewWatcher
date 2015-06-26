@@ -1,5 +1,8 @@
 # PRReviewWatcher
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Yproximite/PRReviewWatcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Yproximite/PRReviewWatcher/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/yproximite/pr-review-watcher/v/stable)](https://packagist.org/packages/yproximite/pr-review-watcher) [![Total Downloads](https://poser.pugx.org/yproximite/pr-review-watcher/downloads)](https://packagist.org/packages/yproximite/pr-review-watcher) [![Latest Unstable Version](https://poser.pugx.org/yproximite/pr-review-watcher/v/unstable)](https://packagist.org/packages/yproximite/pr-review-watcher) [![License](https://poser.pugx.org/yproximite/pr-review-watcher/license)](https://packagist.org/packages/yproximite/pr-review-watcher)
+
 ### What the purpose of this project ?
 The PR Review Watcher will post a list of checks you've defined as a Pull Request comment when a new pull request is created
 
