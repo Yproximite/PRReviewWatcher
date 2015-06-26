@@ -19,7 +19,7 @@ The project can **save you time** when it comes to pull request reviews:
 
 ### How to install the project
 
-Simply install the project via composer or via git.
+Simply install the project via composer or via git and run `composer install`
 
 `composer require yproximite/pr-review-watcher`
 
