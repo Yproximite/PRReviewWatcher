@@ -30,28 +30,26 @@ The list of checks are fully customizable. No github credential's needed (just t
 
 ### How to install the project
 
-Simply install the project via composer or via git and run `composer install`
-
-`composer require yproximite/pr-review-watcher`
+Simply install the project via **composer**: `composer require yproximite/pr-review-watcher`
 
 ### Configuration
 
 #### Security
 
-Enter your desired login/sha1 password inside the file `config/config.yml` (`cp config/config.yml.example` to `config/config.yml` in order to login to the application.
+Enter your desired login/sha1 password inside the file `config/config.yml` (`cp config/config.yml.example` to `config/config.yml` in order to access to the application.
 
 You can generate your sha1 password at [sha1](http://www.sha1-online.com/).
 
 #### Credential
 
-First of all, you'll need a **Github token** in order to post comments.
+First of all, you'll need a **Github Token** in order to post comments.
 
-Check the [GitHub documentation](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to see how to create one .
+Check out the [GitHub documentation](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to see how to create one.
 
 #### Project
 
 Then you add a project you want to hook into.
-Configure webhook github by following this example : 
+Configure Github webhook by following this example : 
 
 * Inside your GitHub project, go to **settings** then to **webhooks & services**.
 * Enter the url of the application + `/api`  Example : `https://[url_of_the_application]/api`, select `application/json` and choose only the event **Pull Request**.
