@@ -3,6 +3,15 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Yproximite/PRReviewWatcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Yproximite/PRReviewWatcher/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/yproximite/pr-review-watcher/v/stable)](https://packagist.org/packages/yproximite/pr-review-watcher) [![Total Downloads](https://poser.pugx.org/yproximite/pr-review-watcher/downloads)](https://packagist.org/packages/yproximite/pr-review-watcher) [![Latest Unstable Version](https://poser.pugx.org/yproximite/pr-review-watcher/v/unstable)](https://packagist.org/packages/yproximite/pr-review-watcher) [![License](https://poser.pugx.org/yproximite/pr-review-watcher/license)](https://packagist.org/packages/yproximite/pr-review-watcher)
 
+1. [What the purpose of this project](#what-the-purpose-of-this-project-) ?
+2. [Screenshots](#screenshots)
+3. [How to install the project](#how-to-install-the-project)
+4. [Configuration](#configuration)
+  1. [Security](#security)
+  2. [Credential](#credential)
+  3. [Project](#project)
+  4. [Vhost](#vhost)
+
 ### What the purpose of this project ?
 The PR Review Watcher will post a list of checks you've defined as a Pull Request comment when a new pull request is created
 
