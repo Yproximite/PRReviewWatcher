@@ -20,7 +20,7 @@ The project can **save you time** when it comes to pull request reviews:
 * avoid common pitfall/mistakes a developer can make
 * make sure the developper has reviewed his own code
 
-The list of checks are fully customizable.
+The list of checks are fully customizable. No github credential's needed (just tokens, which are more secure).
 
 ### Screenshots
 
@@ -68,8 +68,8 @@ nginx example:
     	listen	80;
     	server_name your.domain.name;
      
-    	access_log	/var/log/nginx/prwatcher.access.log;
-    	error_log	/var/log/nginx/prwatcher.error.log;
+    	access_log	/var/log/nginx/pr_watcher.access.log;
+    	error_log	/var/log/nginx/pr_watcher.error.log;
      
     	root path/of/project/web;
     	index index.php;
