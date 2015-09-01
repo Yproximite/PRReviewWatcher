@@ -1,6 +1,6 @@
 {
   "name": "yproximite/pr-review-watcher",
-  "type": "silex-application",
+  "type": "project",
   "description": "An open source tool to help code reviewer's to focus on what's important by reminding the developper to check for obvious things first.",
   "keywords": ["code", "review", "github", "pull", "request", "watcher"],
   "homepage": "https://github.com/Yproximite/PRReviewWatcher",
