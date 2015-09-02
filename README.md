@@ -26,7 +26,11 @@ The list of checks are fully customizable. No github credential's needed (just t
 
 ![Example webinterface](http://i.imgur.com/zsnuTV0.png)
 
+![Example markdown editor](http://i.imgur.com/ZylBkSN.png)
+
 ![Example pull request comment](http://i.imgur.com/mcRPRCU.png)
+
+
 
 ### How to install the project
 
