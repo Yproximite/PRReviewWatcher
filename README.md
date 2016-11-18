@@ -11,6 +11,11 @@
   2. [Credential](#credential)
   3. [Project](#project)
   4. [Vhost](#vhost)
+  
+  
+### Native Github Support 
+
+A few month ago, Github released a new feature that supports pull request templates. You should checkout the [Documentation](https://help.github.com/articles/creating-a-pull-request-template-for-your-repository) and see if it suits your need.
 
 ### What the purpose of this project ?
 The PR Review Watcher will post a list of checks you've defined as a Pull Request comment when a new pull request is created
